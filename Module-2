@@ -1,0 +1,28 @@
+//When 'click' is triggered//
+$("p").on("click", function(){ ... });
+
+
+                                        //ERROR MESSAGES//
+var EventEmitter = require('eventes').EventEmitter;
+
+var logger = new EventEmitter();
+logger.on('error', function(message){
+console.log('ERR: ' + message);
+});
+
+logger.emit('error'. 'Spilled Milk');
+                                        //Logs ERR: Spilled Milk//
+logger.emit('error', 'Eggs Cracked');
+                                        //Logs ERR: Eggs Cracked//
+//When 'request' event is emitted                                        
+function(request, response) { .. }
+
+
+//HTTP Echo Server//
+http.createServer(Function(request, response){ .. });
+//same as//
+var server = http.createServer();
+server.on('request', function(Request, response){ ... });
+
+server.on('close', function(){ ... });
+//on close request//

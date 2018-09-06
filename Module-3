@@ -1,0 +1,76 @@
+                //STREAMS//
+//streams2api
+http.createServer(Function(Request, response){
+response.writeHead(200);
+response.write("<p>Dog is running.</p>);
+setTimeout(function(){
+response.write("<p>Dog is done.</p>");
+response.end();
+}, );
+}).listen(8080);
+
+HOW TO READ FROM THE REQUEST
+
+http.createServer(Function(Request, response){
+response.writeHead(200);
+request.pipe(response);
+
+CAN BE REPLACED WITH ^^^^^
+//request.on('readable', function() {
+//var chunk = null;
+//while(null !== (chunk = request.reade())) {
+//console.log(chunk.toString());
+//response.write(chunk);
+//}
+//request.on('end', function() {
+//response.end();
+//});
+}).listen(8080)
+
+$ curl -d 'hello' http://localhost:8080
+
+//Learn to check API's documentation for stabilization//
+var fs = require('fs');
+var file = fs.createReadStream("readme.md");
+var newFile = fs.createWriteStream("readme_copy.md");
+file.pipe(newFile);
+
+//http://gulpjs.com// //EXAMPLES OF USING STREAMS//
+
+//UPLOAD A FILE//
+var fs = require('fs');
+var hhtp = require)'http');
+
+http.createServer(Function(request, response) {
+var newFile = fs.createWriteStream("readme_copy.md";
+request.pipe(newFile);
+
+request.on('end', function() {
+response.end('uploaded');
+});
+
+}).listen(8080);
+
+$ curl --upload-file readme.md http://localhost:8080
+
+//file uploading progress//
+
+http.createServer(Function(request, response) {
+var newFile = fs.createWriteStream("readme_copy.md";
+
+var fileBytes = request.headers['content-length'];
+var upladedBytes = 0;
+
+request.on('readable', function(){
+var chunk = null;
+while(null !== (chunk = request.read())){
+upladedBytes += chunk.length;
+var progress = (upladedBytes / fileBytes) * 100;
+response.write("progess: " + parseInt(progress, 10) + "%\n");
+}
+});
+request.pipe(newFile);
+...
+{).listen(8080);
+
+//once uploaded you will see loading progress//
